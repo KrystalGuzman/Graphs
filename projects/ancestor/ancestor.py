@@ -1,11 +1,11 @@
 from util import Queue
 
 def get_ancestor(ancestors, child):
-    hiers = []
-    for hier in ancestors:
-        if hier[1] == child:
-            hiers.append(hier[0])
-    return hiers
+    heirs = []
+    for heir in ancestors:
+        if heir[1] == child:
+            heirs.append(heir[0])
+    return heirs
 
 def earliest_ancestor(ancestors, starting_node):
     #create empty queue
