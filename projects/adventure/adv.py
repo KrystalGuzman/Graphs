@@ -95,7 +95,7 @@ def q_moves(player, moves_q):
 
 start_time = time.time()
 
-attempts = 500000
+attempts = 500000 #less attempts for higher steps, more attempts for lower steps
 best_length = 997
 best_path = []
 trial = 0
@@ -108,7 +108,7 @@ for x in range(attempts):
     fresh_room = {}
     #loop through direction in get_exits
     for direction in player.current_room.get_exits():
-        #
+        #adds ? to fresh_room
         fresh_room[direction] = "?"
     #save fresh_room in graph
     graph[world.starting_room.id] = fresh_room
@@ -124,7 +124,7 @@ for x in range(attempts):
     while moves_q.size() > 0:
         #keeps track of starting
         starting = player.current_room.id
-        #dequeue net path
+        #dequeue next path
         next = moves_q.dequeue()
         #moves player
         player.travel(next)
@@ -157,7 +157,9 @@ for x in range(attempts):
         #sets new trial
         trial = x
         #once passing for a 3, stops loop
-        if best_length<957: #960 957 to beat score
+        #takes 2.5-3 hours to run if break not put in
+        #takes about 1 hour with break
+        if best_length<960: #960 for a 3, 957 to beat score
             break
 
 
